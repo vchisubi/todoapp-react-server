@@ -16,7 +16,12 @@ module.exports = function () {
     start;
 
   create = function() {
-
+  // create = function(dir) {
+    // server.use('/client', express.static('client'))
+    // server.get('/', (req, res, next) => {
+    //   res.sendFile(dir + '/client/index.html')
+    // })
+  
     server.use(cors())
     let routes = require('./routes')
 
@@ -35,7 +40,7 @@ module.exports = function () {
   start = function() {
     const port = process.env.PORT || 4002
 
-    mongoose.connect(keys.mongodb.dbURI, {useUnifiedTopology: true, useNewUrlParser: true}, (err) => {
+    mongoose.connect(keys.mongodb.dbURI, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false}, (err) => {
       if(err){
         console.log('Unable to connect to the database!')
         console.log(err)

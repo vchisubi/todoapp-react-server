@@ -9,7 +9,6 @@ localPassport.use(
   passReqToCallback : true
   },
   function(req, inputUsername, inputPassword, done) {
-    console.log('[Enter local-login--] Begin')
     LocalUser.findOne({ username: inputUsername }, async function(err, user) {
       // If any error was encountered
       if (err) {
@@ -27,7 +26,6 @@ localPassport.use(
         return done(null, false)
       }
       // Username and password match, return user
-      console.log('[End local-login--] Login success')
       return done(null, user)
     })
   }

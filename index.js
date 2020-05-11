@@ -1,6 +1,6 @@
 const server = require('./server')()
-const dir = __dirname;
-console.log(dir)
+// const dir = __dirname;
+// console.log(dir)
 
 // server.create(dir);
 server.create();
