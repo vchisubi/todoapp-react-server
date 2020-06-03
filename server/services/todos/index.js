@@ -16,7 +16,7 @@ const getTask = (taskId) => {
   return new Promise((resolve, reject) => {
     TodoList.find({ "id": taskId }, (err, document) => {
       if (err)
-        reject(err);
+        reject(err)
       else
         resolve(document || {})
     })

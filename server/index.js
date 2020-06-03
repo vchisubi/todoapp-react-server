@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const keys = require('./config/keys')
 const GoogleStratSetup = require('./config/googlePassport-setup')
@@ -16,11 +17,7 @@ module.exports = function () {
     start;
 
   create = function() {
-  // create = function(dir) {
-    // server.use('/client', express.static('client'))
-    // server.get('/', (req, res, next) => {
-    //   res.sendFile(dir + '/client/index.html')
-    // })
+    server.use(cookieParser())
   
     server.use(cors())
     let routes = require('./routes')
