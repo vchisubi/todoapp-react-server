@@ -1,5 +1,11 @@
 const TodoList = require('../../models/list-model')
 
+// const todoListResponse = (err, res) => {
+//   if (err){
+//     reject(err)
+//   } else { resolve(res || {}) }
+// }
+
 const getList = async (ownerId) => {
   return new Promise((resolve, reject) => {
     TodoList.find({ "ownerid": ownerId }, (err, documents) => {

@@ -10,22 +10,18 @@ localPassport.use(
   },
   function(req, inputUsername, inputPassword, done) {
     LocalUser.findOne({ username: inputUsername }, async function(err, user) {
-      // If any error was encountered
       if (err) {
         console.log('Error with local login: ' + err)
         return done(err)
       }
-      // If username does not exist
       if (!user || user === null) {
         console.log('Username does not exist!')
         return done(null, false)
       }
-      // If username exists but password was incorrect
       if (!await bcrypt.compare(inputPassword, user.password)) {
         console.log('Password is incorrect!')
         return done(null, false)
       }
-      // Username and password match, return user
       return done(null, user)
     })
   }

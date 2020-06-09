@@ -5,10 +5,7 @@ const cookieSession = require('cookie-session')
 const passport = require('passport')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-
 const keys = require('./config/keys')
-const GoogleStratSetup = require('./config/googlePassport-setup')
-const LocalStratSetup = require('./config/localPassport-setup')
 
 module.exports = function () {
 
@@ -39,7 +36,7 @@ module.exports = function () {
 
     mongoose.connect(keys.mongodb.dbURI, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false}, (err) => {
       if(err){
-        console.log('Unable to connect to the database!')
+        console.log('Unable to connect to the database:')
         console.log(err)
         process.exit(1)
       }

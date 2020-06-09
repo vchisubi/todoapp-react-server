@@ -11,5 +11,8 @@ module.exports = {
   },
   session: {
     cookieKey: process.env.COOKIE_KEY_SECRET
+  },
+  token: {
+    tokenKey: process.env.TOKEN_KEY_SECRET
   }
 }

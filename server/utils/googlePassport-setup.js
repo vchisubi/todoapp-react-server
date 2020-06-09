@@ -1,7 +1,7 @@
 const googlePassport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const keys = require('./keys')
-const User = require('../models/user-model')
+const keys = require('../config/keys')
+const GoogleUser = require('../models/user-model')
 
 googlePassport.use(
   new GoogleStrategy({
@@ -9,12 +9,11 @@ googlePassport.use(
   clientSecret: keys.google.clientSecret,
   callbackURL: '/auth/google/redirect'
   }, (accessToken, refreshToken, profile, done) => {
-    User.findOne({ googleId: profile.id }).then((currentUser) => {
+    GoogleUser.findOne({ googleId: profile.id }).then((currentUser) => {
       if(currentUser){
-        // console.log('Current user is: ' + currentUser)
         done(null, currentUser)
       } else {
-          new User({
+          new GoogleUser({
             username: profile.displayName,
             googleId: profile.id,
             thumbnail: profile._json.picture
